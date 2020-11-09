@@ -1,17 +1,11 @@
-var http = require('http');
 const express = require("express");
 const server = express();
-var redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
 const body_parser = require("body-parser");
-
+const db = require("./db");
 
 server.use(body_parser.json());
-server.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
 
-const port = process.env.PORT || 8000;
-
-const db = require("./db");
- 
+const port = process.env.PORT || 3000;
 
 server.listen(port, () => {
     console.log("App is running on port " + port);

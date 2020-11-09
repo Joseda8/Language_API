@@ -106,7 +106,3 @@ function update_user(cluster, user_info, dataCallback){
 module.exports = {
     find, register_user, update_user
 };
-
-
-//https://dev.to/lennythedev/rest-api-with-mongodb-atlas-cloud-node-and-express-in-10-minutes-2ii1
-
