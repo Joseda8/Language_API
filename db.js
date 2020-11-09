@@ -13,7 +13,7 @@ function find(cluster, collection, dataCallback){
     var this_db_url = ["AME", "ASI", "EUR"];
     delete this_db_url[nodes[cluster]];
 
-    MongoClient.connect(db_url[nodes[cluster]], function lambda(err, dbInstance) {
+    MongoClient.connect(db_url[nodes[cluster]], { useUnifiedTopology: true }, function lambda(err, dbInstance) {
 
         if (err) {
             console.log(`[MongoDB connection] ERROR: ${err}`);
