@@ -1,4 +1,5 @@
 db.media.insertMany([
+  {name: 'All together'},
   {name: 'WhatsApp'},
   {name: 'Telegram'},
   {name: 'Facebook'},

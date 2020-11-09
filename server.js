@@ -26,36 +26,34 @@ server.get("/get", (req, res) => {
     db.find(continent, collection, (data) => {
         res.json(data);
     });
-
-
 });
 
-/*
-db.initialize(function(dbInstance) { 
+server.post("/register", (req, res) => {
+    const new_user = req.body;
+    const {continent} = req.query;
+    console.log(new_user);
+    console.log(continent);
 
-    const dbObject = dbInstance.db(dbName);
-    const dbCollection = dbObject.collection(collectionName); 
-    dbCollection.find().toArray(function(err, result) {
-        if (err) throw err;
-            console.log(result);
+    db.register_user(continent, new_user, (data) => {
+        console.log(data);
     });
 
-    db.find("EUR", dbName, "level");
-
-    server.post("/items", (request, response) => {
-        console.log("POST");
-        const item = request.body;
-        console.log(item);
-        dbCollection.insertOne(item, (error, result) => {
-            if (error) throw error;
-            dbCollection.find().toArray((_error, _result) => { 
-                if (_error) throw _error;
-                response.json(_result);
-            });
-        });
-    });
-
-}, function(err) { 
-    throw (err);
+   res.sendStatus(200);
 });
-*/
+
+
+server.put("/update", (req, res) => {
+    const new_info = req.body;
+    const {continent} = req.query;
+
+    console.log(new_info.hobbies);
+    console.log(new_info.media);
+    console.log(new_info.name);
+    console.log(continent);
+
+    db.update_user(continent, new_info, (data) => {
+        console.log(data);
+    });
+
+    res.sendStatus(200);
+});

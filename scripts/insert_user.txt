@@ -8,4 +8,15 @@ db.user.insertMany([
   learn: [{language: "Chinese", level: "Principiante"}, {language: "English", level: "Intermedio"}], 
   teach: [{language: "Spanish", level: "Avanzado"}, {language: "Slovak", level: "Principiante"}],
   hobbies: ["Computación", "Cocina", "Cine"], media: ["WhatsApp", "Zoom"]},
+
+  {name: "lifestylepoem", age: 35, gender: "M", country: "Denmark",
+  learn: [{language: "Spanish", level: "Principiante"}], 
+  teach: [{language: "English", level: "Avanzado"}],
+  hobbies: ["Deportes", "Cocina", "Cine"], media: ["Facebook", "Zoom"]},
+
+  {name: "Sheepdress", age: 15, gender: "F", country: "Senegal",
+  learn: [{language: "Spanish", level: "Principiante"}], 
+  teach: [{language: "English", level: "Avanzado"}, {language: "German", level: "Intermedio"}],
+  hobbies: ["Deportes", "Cocina", "Cine"], media: ["Discord", "WhatsApp"]},
+
   ])

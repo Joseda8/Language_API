@@ -9,28 +9,11 @@ var db_url = [db_america, db_asia, db_europe];
 
 const dbName = "DB_Languages";
 
-function initialize(successCallback, failureCallback) {
-    var this_db_url = [db_america, db_asia, db_europe];
-    MongoClient.connect(this_db_url.shift(), function lambda(err, dbInstance) {
-        if (err) {
-            console.log(`[MongoDB connection] ERROR: ${err}`);
-            if(this_db_url.length == 0){
-                failureCallback(err);
-            }else{
-                MongoClient.connect(this_db_url.shift(), lambda);
-            }
-        } else {
-            console.log("[MongoDB connection] SUCCESS");
-            successCallback(dbInstance);
-        }
-    });
-}
-
-function find(database, collection, dataCallback){
+function find(cluster, collection, dataCallback){
     var this_db_url = ["AME", "ASI", "EUR"];
-    delete this_db_url[nodes[database]];
+    delete this_db_url[nodes[cluster]];
 
-    MongoClient.connect(db_url[nodes[database]], function lambda(err, dbInstance) {
+    MongoClient.connect(db_url[nodes[cluster]], function lambda(err, dbInstance) {
 
         if (err) {
             console.log(`[MongoDB connection] ERROR: ${err}`);
@@ -57,9 +40,73 @@ function find(database, collection, dataCallback){
     });
 }
 
+
+function register_user(cluster, user_info, dataCallback){
+    var this_db_url = ["AME", "ASI", "EUR"];
+    delete this_db_url[nodes[cluster]];
+
+    const collection = "user";
+
+    MongoClient.connect(db_url[nodes[cluster]], function lambda(err, dbInstance) {
+
+        if (err) {
+            console.log(`[MongoDB connection] ERROR: ${err}`);
+            
+            if(this_db_url.length == 0){
+                dataCallback(err);
+            }else{
+                MongoClient.connect(db_url[nodes[this_db_url.shift()]], lambda);
+            }
+
+        } else {
+            const dbObject = dbInstance.db(dbName);
+            const dbCollection = dbObject.collection(collection); 
+
+            dbCollection.insertOne(user_info, (error, result) => {
+                if (error) throw error;
+            });
+        
+            dbInstance.close();
+        }
+    });
+}
+
+
+function update_user(cluster, user_info, dataCallback){
+    var this_db_url = ["AME", "ASI", "EUR"];
+    delete this_db_url[nodes[cluster]];
+
+    const collection = "user";
+
+    MongoClient.connect(db_url[nodes[cluster]], function lambda(err, dbInstance) {
+
+        if (err) {
+            console.log(`[MongoDB connection] ERROR: ${err}`);
+            
+            if(this_db_url.length == 0){
+                dataCallback(err);
+            }else{
+                MongoClient.connect(db_url[nodes[this_db_url.shift()]], lambda);
+            }
+
+        } else {
+            const dbObject = dbInstance.db(dbName);
+            const dbCollection = dbObject.collection(collection); 
+
+            dbCollection.updateOne({ name: user_info.name }, { $set: {hobbies: user_info.hobbies, media: user_info.media} }, (error, result) => {
+                if (error) throw error;
+            });
+        
+            dbInstance.close();
+        }
+    });
+}
+
+
 module.exports = {
-    initialize, find
+    find, register_user, update_user
 };
 
 
 //https://dev.to/lennythedev/rest-api-with-mongodb-atlas-cloud-node-and-express-in-10-minutes-2ii1
+
