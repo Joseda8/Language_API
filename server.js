@@ -5,13 +5,14 @@ const body_parser = require("body-parser");
 
 server.use(body_parser.json());
 
-const port = 3000;
+
+var port_number = server.listen(process.env.PORT || 3000);
 
 const db = require("./db");
 const collectionName = "hobbie";
 
-server.listen(port, () => {
-    console.log(`Server listening at ${port}`);
+server.listen(port_number, () => {
+    console.log(`Server listening at ${port_number}`);
 });
 
 
