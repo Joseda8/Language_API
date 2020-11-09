@@ -63,7 +63,7 @@ function register_user(cluster, user_info, dataCallback){
             const dbCollection = dbObject.collection(collection); 
 
             dbCollection.insertOne(user_info, (error, result) => {
-                if (error) throw error;
+                console.log(error);
             });
         
             dbInstance.close();
@@ -94,7 +94,7 @@ function update_user(cluster, user_info, dataCallback){
             const dbCollection = dbObject.collection(collection); 
 
             dbCollection.updateOne({ name: user_info.name }, { $set: {hobbies: user_info.hobbies, media: user_info.media} }, (error, result) => {
-                if (error) throw error;
+                console.log(error);
             });
         
             dbInstance.close();
