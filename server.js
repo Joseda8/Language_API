@@ -6,11 +6,21 @@ const body_parser = require("body-parser");
 
 server.use(body_parser.json());
 
-
 const port = process.env.PORT || 8000;
 
 const db = require("./db");
-const collectionName = "hobbie";
+
+server.use((req, res, next) => {
+    if (process.env.NODE_ENV === 'production') {
+        if (req.headers.host === 'your-app.herokuapp.com')
+            return res.redirect(301, 'https://alltogether.herokuapp.com/');
+        if (req.headers['x-forwarded-proto'] !== 'https')
+            return res.redirect('https://' + req.headers.host + req.url);
+        else
+            return next();
+    } else
+        return next();
+});
 
 server.listen(port, () => {
     console.log("App is running on port " + port);
@@ -32,8 +42,6 @@ server.get("/get", (req, res) => {
 server.post("/register", (req, res) => {
     const new_user = req.body;
     const {continent} = req.query;
-    console.log(new_user);
-    console.log(continent);
 
     db.register_user(continent, new_user, (data) => {
         console.log(data);
@@ -46,11 +54,6 @@ server.post("/register", (req, res) => {
 server.put("/update", (req, res) => {
     const new_info = req.body;
     const {continent} = req.query;
-
-    console.log(new_info.hobbies);
-    console.log(new_info.media);
-    console.log(new_info.name);
-    console.log(continent);
 
     db.update_user(continent, new_info, (data) => {
         console.log(data);
