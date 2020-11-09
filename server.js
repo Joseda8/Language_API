@@ -6,15 +6,14 @@ const body_parser = require("body-parser");
 server.use(body_parser.json());
 
 
-var port_number = server.listen(process.env.PORT || 3000);
+const port = process.env.PORT || 8000;
 
 const db = require("./db");
 const collectionName = "hobbie";
 
-server.listen(port_number, () => {
-    console.log(`Server listening at ${port_number}`);
+server.listen(port, () => {
+    console.log("App is running on port " + port);
 });
-
 
 server.get("/", (req, res) => {
     res.end("HOLA");
