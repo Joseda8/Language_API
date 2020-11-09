@@ -1,26 +1,17 @@
 var http = require('http');
 const express = require("express");
 const server = express();
-
+var redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
 const body_parser = require("body-parser");
 
+
 server.use(body_parser.json());
+server.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
 
 const port = process.env.PORT || 8000;
 
 const db = require("./db");
-
-server.use((req, res, next) => {
-    if (process.env.NODE_ENV === 'production') {
-        if (req.headers.host === 'your-app.herokuapp.com')
-            return res.redirect(301, 'https://alltogether.herokuapp.com/');
-        if (req.headers['x-forwarded-proto'] !== 'https')
-            return res.redirect('https://' + req.headers.host + req.url);
-        else
-            return next();
-    } else
-        return next();
-});
+ 
 
 server.listen(port, () => {
     console.log("App is running on port " + port);
