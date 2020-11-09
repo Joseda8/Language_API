@@ -1,0 +1,10 @@
+db.media.insertMany([
+  {name: 'WhatsApp'},
+  {name: 'Telegram'},
+  {name: 'Facebook'},
+  {name: 'En persona'},
+  {name: 'Skype'},
+  {name: 'Zoom'},
+  {name: 'Discord'},
+  {name: 'Otro'}
+  ])

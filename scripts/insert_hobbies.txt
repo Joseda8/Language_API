@@ -1,0 +1,11 @@
+db.hobbie.insertMany([
+  {name: 'Deportes'},
+  {name: 'Música'},
+  {name: 'Computación'},
+  {name: 'Ciencia'},
+  {name: 'Cocina'},
+  {name: 'Cine'},
+  {name: 'Video juegos'},
+  {name: 'Viajes'},
+  {name: 'Política'}
+  ])

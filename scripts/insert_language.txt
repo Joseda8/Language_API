@@ -1,0 +1,116 @@
+db.language.insertMany([
+    {
+        "name":"Arabic",
+        "nativeName":"العربية"
+    },
+    {
+        "name":"Chinese",
+        "nativeName":"中文 (Zhōngwén), 汉语, 漢語"
+    },
+    {
+        "name":"Croatian",
+        "nativeName":"hrvatski"
+    },
+    {
+        "name":"Czech",
+        "nativeName":"česky, čeština"
+    },
+    {
+        "name":"Dutch",
+        "nativeName":"Nederlands"
+    },
+    {
+        "name":"English",
+        "nativeName":"English"
+    },
+    {
+        "name":"French",
+        "nativeName":"Français"
+    },
+    {
+        "name":"German",
+        "nativeName":"Deutsch"
+    },
+    {
+        "name":"Greek",
+        "nativeName":"Ελληνικά"
+    },
+    {
+        "name":"Indonesian",
+        "nativeName":"Bahasa Indonesia"
+    },
+    {
+        "name":"Italian",
+        "nativeName":"Italiano"
+    },
+    {
+        "name":"Japanese",
+        "nativeName":"日本語 (にほんご／にっぽんご)"
+    },
+   {
+        "name":"Kongo",
+        "nativeName":"KiKongo"
+    },
+   {
+        "name":"Korean",
+        "nativeName":"한국어 (韓國語), 조선말 (朝鮮語)"
+    },
+    {
+        "name":"Latin",
+        "nativeName":"Latine"
+    },
+    {
+        "name":"Mongolian",
+        "nativeName":"монгол"
+    },
+    {
+        "name":"Norwegian",
+        "nativeName":"Norsk"
+    },
+    {
+        "name":"Portuguese",
+        "nativeName":"Português"
+    },
+    {
+        "name":"Russian",
+        "nativeName":"русский язык"
+    },
+    {
+        "name":"Serbian",
+        "nativeName":"српски језик"
+    },
+    {
+        "name":"Slovak",
+        "nativeName":"slovenčina"
+    },
+    {
+        "name":"Slovene",
+        "nativeName":"slovenščina"
+    },
+    {
+        "name":"Somali",
+        "nativeName":"Soomaaliga"
+    },
+    {
+        "name":"Spanish",
+        "nativeName":"Español"
+    },
+    {
+        "name":"Swahili",
+        "nativeName":"Kiswahili"
+    },
+    {
+        "name":"Swedish",
+        "nativeName":"svenska"
+    },
+    {
+        "name":"Turkish",
+        "nativeName":"Türkçe"
+    },
+   {
+        "name":"Ukrainian",
+        "nativeName":"українська"
+    },
+  ]
+
+)

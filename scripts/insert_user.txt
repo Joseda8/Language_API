@@ -1,0 +1,11 @@
+db.user.insertMany([
+  {name: "Joseda8", age: 22, gender: "M", country: "Costa Rica",
+  learn: [{language: "German", level: "Principiante"}, {language: "Slovak", level: "Principiante"}, {language: "English", level: "Intermedio"}], 
+  teach: [{language: "Spanish", level: "Avanzado"}],
+  hobbies: ["Música", "Deportes"], media: ["WhatsApp"]},
+
+  {name: "Kev_db", age: 23, gender: "M", country: "Costa Rica",
+  learn: [{language: "Chinese", level: "Principiante"}, {language: "English", level: "Intermedio"}], 
+  teach: [{language: "Spanish", level: "Avanzado"}, {language: "Slovak", level: "Principiante"}],
+  hobbies: ["Computación", "Cocina", "Cine"], media: ["WhatsApp", "Zoom"]},
+  ])

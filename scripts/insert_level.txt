@@ -1,0 +1,5 @@
+db.level.insertMany([
+  {name: 'Principiante', level: 1},
+  {name: 'Intermedio', level: 2},
+  {name: 'Avanzado', level: 3},
+  ])
