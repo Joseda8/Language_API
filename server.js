@@ -50,10 +50,12 @@ server.put("/update", (req, res) => {
 
 
 server.get("/people_learn", (req, res) => {
-    const languages = req.body;
+    const info = req.body;
     const {continent} = req.query;
 
-    db.do_query(continent, "PEOPLE_LEARN", languages, (data) => {
+    console.log(info);
+
+    db.do_query(continent, "PEOPLE_LEARN", info, (data) => {
         res.json(data);
     });
 });
@@ -62,16 +64,11 @@ server.get("/people_learn_teach", (req, res) => {
     const languages = req.body;
     const {continent} = req.query;
 
+    console.log(languages);
+
     db.do_query(continent, "PEOPLE_LEARN_TEACH", languages, (data) => {
         res.json(data);
     });
-
-    /*
-db.user.find(
-    {$and: [{"learn.language": {$in: ["Slovak", "Chinese"]}}, {"teach.language": {$in: ["Spanish"]}}]},
-    {_id:0}
-    )
-    */
 });
 
 

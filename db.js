@@ -27,8 +27,8 @@ function do_query(cluster, query, info, dataCallback){
 
         } else {
             const dbObject = dbInstance.db(dbName);
-            var dbCollection;
             const collection = "user";
+            var dbCollection = dbObject.collection(collection);
 
             switch(query) {
                 case "FIND":
@@ -39,23 +39,28 @@ function do_query(cluster, query, info, dataCallback){
                     });
                     break;
 
-                case "REGISTER":
-                    dbCollection = dbObject.collection(collection); 
+                case "REGISTER": 
                     dbCollection.insertOne(info, (error, result) => {
                         if(error){console.log(error);}
                     });
                   break;
 
                 case "UPDATE":
-                    dbCollection = dbObject.collection(collection); 
                     dbCollection.updateOne({ name: info.name }, { $set: {hobbies: info.hobbies, media: info.media} }, (error, result) => {
                         if(error){console.log(error);}
                     });
                     break;
 
                 case "PEOPLE_LEARN":
-                    dbCollection = dbObject.collection(collection); 
-                    dbCollection.find({"learn.language": {$in: info}}, { projection: {_id:0}} ).toArray(function(error, result) {
+                    dbCollection.find({$and: [{"learn.language": {$in: info.languages}}, {"name": {$nin: [info.username]}}]}, { projection: {_id:0}} ).toArray(function(error, result) {
+                        if(error){console.log(error);}
+                        dataCallback(result);
+                    });
+                    break;
+                
+                case "PEOPLE_LEARN_TEACH":
+                    dbCollection.find({$and: [{"learn.language": {$in: info.learn}}, {"teach.language": {$in: info.teach}}, {"name": {$nin: [info.username]}}]}, 
+                    { projection: {_id:0}} ).toArray(function(error, result) {
                         if(error){console.log(error);}
                         dataCallback(result);
                     });
