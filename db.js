@@ -83,6 +83,30 @@ function do_query(cluster, query, info, dataCallback){
                     });
                     break;
 
+                case "PEOPLE_BY_COUNTRY":
+                    dbCollection = dbObject.collection(collection);
+                    dbCollection.aggregate([ { $group : { _id : "$country", count: { $sum: 1 } } } ]).toArray(function(error, result) {
+                        if(error){console.log(error);}
+                        dataCallback(result);
+                    });
+                    break;
+                
+                case "PEOPLE_BY_LEARN":
+                    dbCollection = dbObject.collection(collection);
+                    dbCollection.aggregate([{$unwind: "$learn" }, { $group : { _id : "$learn.language", count: { $sum: 1 } } } ]).toArray(function(error, result) {
+                        if(error){console.log(error);}
+                        dataCallback(result);
+                    });
+                    break;
+
+                case "PEOPLE_BY_TEACH":
+                    dbCollection = dbObject.collection(collection);
+                    dbCollection.aggregate([{$unwind: "$teach" }, { $group : { _id : "$teach.language", count: { $sum: 1 } } } ]).toArray(function(error, result) {
+                        if(error){console.log(error);}
+                        dataCallback(result);
+                    });
+                    break;
+
                 default:
                     dataCallback("Incorrect query");
               }
