@@ -5,8 +5,8 @@ db.user.insertMany([
   hobbies: ["Música", "Deportes"], media: ["WhatsApp"]},
 
   {name: "Kev_db", age: 23, gender: "M", country: "Costa Rica",
-  learn: [{language: "Chinese", level: "Principiante"}, {language: "English", level: "Intermedio"}], 
-  teach: [{language: "Spanish", level: "Avanzado"}, {language: "Slovak", level: "Principiante"}],
+  learn: [{language: "Chinese", level: "Principiante"}, {language: "English", level: "Intermedio"}, {language: "Spanish", level: "Intermedio"}], 
+  teach: [{language: "Slovak", level: "Principiante"}, {language: "German", level: "Avanzado"}],
   hobbies: ["Computación", "Cocina", "Cine"], media: ["WhatsApp", "Zoom"]},
 
   {name: "lifestylepoem", age: 35, gender: "M", country: "Denmark",
@@ -18,5 +18,30 @@ db.user.insertMany([
   learn: [{language: "Spanish", level: "Principiante"}], 
   teach: [{language: "English", level: "Avanzado"}, {language: "German", level: "Intermedio"}],
   hobbies: ["Deportes", "Cocina", "Cine"], media: ["Discord", "WhatsApp"]},
+
+  {name: "Naans12", age: 25, gender: "F", country: "India",
+ learn: [{language: "Spanish", level: "Intermedio"}, {language: "Chinese", level: "Principiante"}, {language: "Italian", level: "Intermedio"}], 
+ teach: [{language: "English", level: "Avanzado"}],
+ hobbies: ["Computación", "Política"], media: ["All together", "Discord", "WhatsApp"]},
+
+{name: "Hanabi98", age: 28, gender: "F", country: "Japan",
+ learn: [{language: "French", level: "Principiante"}, {language: "Latin", level: "Intermedio"}], 
+ teach: [{language: "Japonese", level: "Avanzado"}],
+ hobbies: ["Música", "Ciencia", "Deportes"], media: ["Zoom"]},
+
+{name: "Inwin2010", age: 31, gender: "F", country: "Australia",
+ learn: [{language: "German", level: "Avanzado"}, {language: "Portuguese", level: "Avanzado"}, {language: "Latin", level: "Principiante"}], 
+ teach: [{language: "Spanish", level: "Avanzado"}],
+ hobbies: ["Cocina"], media: ["Discord"]},
+
+{name: "JamesHN78", age: 36, gender: "F", country: "Ireland",
+ learn: [{language: "Turkish", level: "Intermedio"}], 
+ teach: [{language: "English", level: "Avanzado"}],
+ hobbies: ["Video juegos", "Política"], media: ["Skype"]},
+
+{name: "DracoM653", age: 40, gender: "F", country: "Russian Federation",
+ learn: [{language: "English", level: "Avanzado"}, {language: "Spanish", level: "Avanzado"}, {language: "Italian", level: "Avanzado"}], 
+ teach: [{language: "Russian", level: "Avanzado"}],
+ hobbies: ["Viajes", "Ciencia"], media: ["En persona", "Skype"]}
 
   ])

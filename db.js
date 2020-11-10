@@ -52,14 +52,31 @@ function do_query(cluster, query, info, dataCallback){
                     break;
 
                 case "PEOPLE_LEARN":
-                    dbCollection.find({$and: [{"learn.language": {$in: info.languages}}, {"name": {$nin: [info.username]}}]}, { projection: {_id:0}} ).toArray(function(error, result) {
+                    dbCollection.find({"learn.language": {$in: info.learn}}, { projection: {_id:0}} ).toArray(function(error, result) {
                         if(error){console.log(error);}
                         dataCallback(result);
                     });
                     break;
                 
                 case "PEOPLE_LEARN_TEACH":
-                    dbCollection.find({$and: [{"learn.language": {$in: info.learn}}, {"teach.language": {$in: info.teach}}, {"name": {$nin: [info.username]}}]}, 
+                    dbCollection.find({$and: [{"learn.language": {$in: info.learn}}, {"teach.language": {$in: info.teach}}]}, 
+                    { projection: {_id:0}} ).toArray(function(error, result) {
+                        if(error){console.log(error);}
+                        dataCallback(result);
+                    });
+                    break;
+
+                case "PEOPLE_LEARN_TEACH_COUNTRY":
+                    dbCollection.find({$and: [{"learn.language": {$in: info.learn}}, {"teach.language": {$in: info.teach}}, {"country": info.country}]}, 
+                    { projection: {_id:0}} ).toArray(function(error, result) {
+                        if(error){console.log(error);}
+                        dataCallback(result);
+                    });
+                    break;
+
+                case "PEOPLE_LEARN_TEACH_COUNTRY_AGE":
+                    dbCollection.find({$and: [{"learn.language": {$in: info.learn}}, {"teach.language": {$in: info.teach}}, 
+                    {"country": info.country}, {"age": {$gte: info.min, $lte: info.max}}]}, 
                     { projection: {_id:0}} ).toArray(function(error, result) {
                         if(error){console.log(error);}
                         dataCallback(result);
@@ -78,4 +95,3 @@ function do_query(cluster, query, info, dataCallback){
 module.exports = {
     do_query
 };
-

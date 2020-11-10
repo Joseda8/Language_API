@@ -53,22 +53,37 @@ server.get("/people_learn", (req, res) => {
     const info = req.body;
     const {continent} = req.query;
 
-    console.log(info);
-
     db.do_query(continent, "PEOPLE_LEARN", info, (data) => {
         res.json(data);
     });
 });
 
 server.get("/people_learn_teach", (req, res) => {
-    const languages = req.body;
+    const info = req.body;
     const {continent} = req.query;
 
-    console.log(languages);
+    db.do_query(continent, "PEOPLE_LEARN_TEACH", info, (data) => {
+        res.json(data);
+    });
+});
 
-    db.do_query(continent, "PEOPLE_LEARN_TEACH", languages, (data) => {
+server.get("/people_learn_teach_country", (req, res) => {
+    const info = req.body;
+    const {continent} = req.query;
+
+    db.do_query(continent, "PEOPLE_LEARN_TEACH_COUNTRY", info, (data) => {
         res.json(data);
     });
 });
 
 
+server.get("/people_learn_teach_country_age", (req, res) => {
+    const info = req.body;
+    const {continent} = req.query;
+
+    console.log(info);
+
+    db.do_query(continent, "PEOPLE_LEARN_TEACH_COUNTRY_AGE", info, (data) => {
+        res.json(data);
+    });
+});
