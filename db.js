@@ -9,7 +9,8 @@ var db_url = [db_america, db_asia, db_europe];
 
 const dbName = "DB_Languages";
 
-function find(cluster, collection, dataCallback){
+
+function do_query(cluster, query, info, dataCallback){
     var this_db_url = ["AME", "ASI", "EUR"];
     delete this_db_url[nodes[cluster]];
 
@@ -26,83 +27,50 @@ function find(cluster, collection, dataCallback){
 
         } else {
             const dbObject = dbInstance.db(dbName);
-            const dbCollection = dbObject.collection(collection); 
+            var dbCollection;
+            const collection = "user";
 
-            dbCollection.find({}, { projection: {_id:0}} ).toArray(function(err, result) {
-                if (err) {
-                    console.log(err);
-                }
-                dataCallback(result);
-            });
+            switch(query) {
+                case "FIND":
+                    dbCollection = dbObject.collection(info); 
+                    dbCollection.find({}, { projection: {_id:0}} ).toArray(function(error, result) {
+                        if(error){console.log(error);}
+                        dataCallback(result);
+                    });
+                    break;
 
-            dbInstance.close();
-        }
-    });
-}
+                case "REGISTER":
+                    dbCollection = dbObject.collection(collection); 
+                    dbCollection.insertOne(info, (error, result) => {
+                        if(error){console.log(error);}
+                    });
+                  break;
 
+                case "UPDATE":
+                    dbCollection = dbObject.collection(collection); 
+                    dbCollection.updateOne({ name: info.name }, { $set: {hobbies: info.hobbies, media: info.media} }, (error, result) => {
+                        if(error){console.log(error);}
+                    });
+                    break;
 
-function register_user(cluster, user_info, dataCallback){
-    var this_db_url = ["AME", "ASI", "EUR"];
-    delete this_db_url[nodes[cluster]];
+                case "PEOPLE_LEARN":
+                    dbCollection = dbObject.collection(collection); 
+                    dbCollection.find({"learn.language": {$in: info}}, { projection: {_id:0}} ).toArray(function(error, result) {
+                        if(error){console.log(error);}
+                        dataCallback(result);
+                    });
+                    break;
 
-    const collection = "user";
-
-    MongoClient.connect(db_url[nodes[cluster]], function lambda(err, dbInstance) {
-
-        if (err) {
-            console.log(`[MongoDB connection] ERROR: ${err}`);
-            
-            if(this_db_url.length == 0){
-                dataCallback(err);
-            }else{
-                MongoClient.connect(db_url[nodes[this_db_url.shift()]], lambda);
-            }
-
-        } else {
-            const dbObject = dbInstance.db(dbName);
-            const dbCollection = dbObject.collection(collection); 
-
-            dbCollection.insertOne(user_info, (error, result) => {
-                console.log(error);
-            });
+                default:
+                    dataCallback("Incorrect query");
+              }
         
             dbInstance.close();
         }
     });
 }
-
-
-function update_user(cluster, user_info, dataCallback){
-    var this_db_url = ["AME", "ASI", "EUR"];
-    delete this_db_url[nodes[cluster]];
-
-    const collection = "user";
-
-    MongoClient.connect(db_url[nodes[cluster]], function lambda(err, dbInstance) {
-
-        if (err) {
-            console.log(`[MongoDB connection] ERROR: ${err}`);
-            
-            if(this_db_url.length == 0){
-                dataCallback(err);
-            }else{
-                MongoClient.connect(db_url[nodes[this_db_url.shift()]], lambda);
-            }
-
-        } else {
-            const dbObject = dbInstance.db(dbName);
-            const dbCollection = dbObject.collection(collection); 
-
-            dbCollection.updateOne({ name: user_info.name }, { $set: {hobbies: user_info.hobbies, media: user_info.media} }, (error, result) => {
-                console.log(error);
-            });
-        
-            dbInstance.close();
-        }
-    });
-}
-
 
 module.exports = {
-    find, register_user, update_user
+    do_query
 };
+
