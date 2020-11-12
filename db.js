@@ -10,6 +10,42 @@ var db_url = [db_america, db_asia, db_europe];
 const dbName = "DB_Languages";
 
 
+function do_query_to_cluster(cluster, query, info, dataCallback){
+
+    MongoClient.connect(db_url[nodes[cluster]], function lambda(err, dbInstance) {
+
+        if (err) {
+            console.log(`[MongoDB connection] ERROR: ${err}`);
+            dataCallback(err);
+
+        } else {
+            const dbObject = dbInstance.db(dbName);
+            const collection = "user";
+            var dbCollection = dbObject.collection(collection);
+
+            switch(query) {
+
+                case "REGISTER": 
+                    dbCollection.insertOne(info, (error, result) => {
+                        if(error){console.log(error);}
+                    });
+                  break;
+
+                case "UPDATE":
+                    dbCollection.updateOne({ name: info.name }, { $set: {hobbies: info.hobbies, media: info.media} }, (error, result) => {
+                        if(error){console.log(error);}
+                    });
+                    break;
+
+                default:
+                    dataCallback("Incorrect query");
+              }
+        
+            dbInstance.close();
+        }
+    });
+}
+
 function do_query(cluster, query, info, dataCallback){
     var this_db_url = ["AME", "ASI", "EUR"];
     delete this_db_url[nodes[cluster]];
@@ -117,5 +153,5 @@ function do_query(cluster, query, info, dataCallback){
 }
 
 module.exports = {
-    do_query
+    do_query, do_query_to_cluster
 };
