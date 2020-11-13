@@ -75,6 +75,13 @@ function do_query(cluster, query, info, dataCallback){
                     });
                     break;
 
+                    case "FIND_USER":
+                        dbCollection.find({ name: info.name }, { projection: {_id:0}} ).toArray(function(error, result) {
+                            if(error){console.log(error);}
+                            dataCallback(result);
+                        });
+                        break;
+
                 case "REGISTER": 
                     dbCollection.insertOne(info, (error, result) => {
                         if(error){console.log(error);}

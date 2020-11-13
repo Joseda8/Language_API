@@ -26,6 +26,21 @@ server.get("/get", (req, res) => {
     });
 });
 
+server.get("/get_user", (req, res) => {
+    const username = req.body;
+    const {continent} = req.query;
+
+
+    db.do_query(continent, "FIND_USER", username, (data) => {
+        if(data.length == 1){
+            res.json(data);
+        }else{
+            res.sendStatus(404);
+        }
+        
+    });
+});
+
 server.post("/register", (req, res) => {
     const new_user = req.body;
     const {continent} = req.query;
@@ -34,7 +49,7 @@ server.post("/register", (req, res) => {
         console.log(data);
     });
 
-   res.sendStatus(200);
+   c
 });
 
 
@@ -120,3 +135,21 @@ server.get("/people_by_teach", (req, res) => {
 //db.user.aggregate( [ {$unwind: "$learn" } ] )
 
 //db.user.aggregate( [ {$unwind: "$learn" }, { $group : { _id : "$learn.language", count: { $sum: 1 } } } ] )
+
+/*
+if (!localStorage.getItem('user_info')){
+    localStorage.setItem('user_info', '');
+}
+
+    var info = { "username": "Joseda8", 
+                "learn":[
+                {"language":"English", "level":"Intermedio"},
+                {"language":"Spanish", "lastName":"Avanzado"}
+                ],
+                "teach":[
+                {"language":"German", "level":"Principiante"},
+                ],
+            };
+
+    localStorage.setItem('user_info', info);
+*/
