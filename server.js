@@ -2,10 +2,12 @@ const express = require("express");
 const server = express();
 const body_parser = require("body-parser");
 const db = require("./db");
+const cors = require('cors');
 
 server.use(body_parser.json());
+server.use(cors());
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 server.listen(port, () => {
     console.log("App is running on port " + port);
@@ -26,10 +28,9 @@ server.get("/get", (req, res) => {
     });
 });
 
-server.get("/get_user", (req, res) => {
+server.post("/get_user", (req, res) => {
     const username = req.body;
     const {continent} = req.query;
-
 
     db.do_query(continent, "FIND_USER", username, (data) => {
         if(data.length == 1){
@@ -48,8 +49,6 @@ server.post("/register", (req, res) => {
     db.do_query(continent, "REGISTER", new_user, (data) => {
         console.log(data);
     });
-
-   c
 });
 
 
@@ -65,7 +64,7 @@ server.put("/update", (req, res) => {
 });
 
 
-server.get("/people_learn", (req, res) => {
+server.post("/people_learn", (req, res) => {
     const info = req.body;
     const {continent} = req.query;
 
@@ -74,7 +73,7 @@ server.get("/people_learn", (req, res) => {
     });
 });
 
-server.get("/people_learn_teach", (req, res) => {
+server.post("/people_learn_teach", (req, res) => {
     const info = req.body;
     const {continent} = req.query;
 
@@ -83,7 +82,7 @@ server.get("/people_learn_teach", (req, res) => {
     });
 });
 
-server.get("/people_learn_teach_country", (req, res) => {
+server.post("/people_learn_teach_country", (req, res) => {
     const info = req.body;
     const {continent} = req.query;
 
@@ -93,7 +92,7 @@ server.get("/people_learn_teach_country", (req, res) => {
 });
 
 
-server.get("/people_learn_teach_country_age", (req, res) => {
+server.post("/people_learn_teach_country_age", (req, res) => {
     const info = req.body;
     const {continent} = req.query;
 
