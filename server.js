@@ -49,6 +49,8 @@ server.post("/register", (req, res) => {
     db.do_query(continent, "REGISTER", new_user, (data) => {
         console.log(data);
     });
+
+    res.sendStatus(200);
 });
 
 
