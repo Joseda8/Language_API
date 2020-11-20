@@ -17,6 +17,7 @@ server.get("/", (req, res) => {
     res.end("Hello World!");
 });
 
+
 /*
 CONSULTAS A LA APLICACIÓN DE LOS USUARIOS
 */

@@ -42,6 +42,76 @@ db.user.insertMany([
 {name: "DracoM653", age: 40, gender: "F", country: "Russian Federation",
  learn: [{language: "English", level: "Avanzado"}, {language: "Spanish", level: "Avanzado"}, {language: "Italian", level: "Avanzado"}], 
  teach: [{language: "Russian", level: "Avanzado"}],
- hobbies: ["Viajes", "Ciencia"], media: ["En persona", "Skype"]}
+ hobbies: ["Viajes", "Ciencia"], media: ["En persona", "Skype"]},
+
+ {name: "Dikiti186", age: 17, gender: "F", country: "Qatar",
+ learn: [{language: "Chinese", level: "Intermedio"}, {language: "German", level: "Principiante"}, {language: "Rusian", level: "Intermedio"}], 
+ teach: [{language: "Arabic", level: "Avanzado"}],
+ hobbies: ["Deportes", "Música", "Computación"], media: ["All together", "Zoom", "Discord","Skype"]},
+
+{name: "Rollik87", age: 40, gender: "F", country: "Singapore",
+ learn: [{language: "Greek", level: "Principiante"}, {language: "Dutch", level: "Intermedio"}], 
+ teach: [{language: "Chinese", level: "Avanzado"}],
+ hobbies: ["Cocina", "Ciencia", "Cine"], media: ["Zoom", "Skype"]},
+
+{name: "Calum1999", age: 21, gender: "M", country: "Norway",
+ learn: [{language: "German", level: "Avanzado"}, {language: "Portuguese", level: "Avanzado"}, {language: "Latin", level: "Principiante"}], 
+ teach: [{language: "Greek", level: "Avanzado"}, {language: "Chinese", level: "Avanzado"}],
+ hobbies: ["Video juegos", "Viajes", "Política"], media: ["Discord", "Skype", "Zoom", "Facebook"]},
+
+{name: "LiamP067", age: 29, gender: "M", country: "Netherlands",
+ learn: [{language: "Turkish", level: "Intermedio"}], 
+ teach: [{language: "German", level: "Avanzado"}, {language: "Portuguese", level: "Avanzado"}],
+ hobbies: ["Deportes", "Política"], media: ["Skype"]},
+
+{name: "SiriusB78", age: 37, gender: "M", country: "Portugal",
+ learn: [{language: "Croatian", level: "Avanzado"}, {language: "Italian", level: "Avanzado"}], 
+ teach: [{language: "Portuguese", level: "Avanzado"}],
+ hobbies: ["Música", "Viajes"], media: ["En persona", "Skype", "Discord", "WhatsApp"]},
+
+{name: "PepeA78", age: 49, gender: "M", country: "Bosnia and Herzegovina",
+learn: [{language: "Portuguese", level: "Intermedio"}], 
+teach: [{language: "Latin", level: "Avanzado"}, {language: "Italian", level: "Avanzado"}],
+hobbies: ["Computación", "Video juegos"], media: ["Skype", "Discord", "Zoom", "Facebook"]},
+   
+{name: "Nathaly76", age: 24, gender: "F", country: "Iraq",
+learn: [{language: "Korean", level: "Avanzado"}, {language: "Greek", level: "Intermedio"}, {language: "Russian", level: "Principiante"}], 
+teach: [{language: "Italian", level: "Avanzado"}, {language: "German", level: "Avanzado"}],
+hobbies: ["Cine", "Ciencia"], media: ["Skype", "Discord", "En persona","Facebook", "WhatsApp"]},
+
+{name: "Dititi34", age: 67, gender: "F", country: "Malaysia",
+learn: [{language: "Latin", level: "Intermedio"}, {language: "Arabic", level: "Principiante"}], 
+teach: [{language: "Croatian", level: "Avanzado"}, {language: "Portuguese", level: "Avanzado"}],
+hobbies: ["Cocina"], media: ["Skype", "Discord", "Facebook", "Zoom"]},
+   
+{name: "Ramiro2", age: 21, gender: "M", country: "Nicaragua",
+learn: [{language: "English", level: "Avanzado"}, {language: "Dutch", level: "Principiante"}], 
+teach: [{language: "Korean", level: "Avanzado"}],
+hobbies: ["Viajes", "Cocina", "Música"], media: ["Facebook", "Discord", "Skype"]},
+   
+{name: "Dimitri12", age: 44, gender: "M", country: "Poland",
+learn: [{language: "Turkish", level: "Intermedio"}], 
+teach: [{language: "Dutch", level: "Avanzado"}, {language: "Korean", level: "Avanzado"}],
+hobbies: ["Deportes", "Política"], media: ["Skype", "Facebook", "Otro", "Telegram", "WhatsApp"]},
+      
+{name: "Sheeran45", age: 29, gender: "M", country: "Sweden",
+learn: [{language: "Croatian", level: "Principiante"}, {language: "Latin", level: "Intermedio"}], 
+teach: [{language: "Swedish", level: "Avanzado"}],
+hobbies: ["Ciencia"], media: ["WhatsApp", "Zoom", "Discord", "Skype"]},
+
+{name: "Horacio12", age: 19, gender: "M", country: "Turkey",
+learn: [{language: "Korean", level: "Avanzado"}, {language: "Swedish", level: "Principiante"}, {language: "Russian", level: "Principiante"}], 
+teach: [{language: "Japonese", level: "Avanzado"}, {language: "Turkish", level: "Avanzado"}],
+hobbies: ["Viajes", "Cine"], media: ["Skype", "Discord", "Telegram", "Facebook"]},
+       
+{name: "Rakimi79", age: 38, gender: "M", country: "South Africa",
+learn: [{language: "Somali", level: "Intermedio"}], 
+teach: [{language: "Kongo", level: "Avanzado"}],
+hobbies: ["Video juegos", "Política"], media: ["Discord", "Zoom", "Skype"]},
+          
+{name: "Makel86", age: 34, gender: "F", country: "Senegal",
+learn: [{language: "English", level: "Principiante"}, {language: "Kongo", level: "Avanzado"}, {language: "Japonese", level: "Intermedio"}], 
+teach: [{language: "Somali", level: "Avanzado"}],
+hobbies: ["Video juegos", "Ciencia"], media: ["Discord", "Zoom", "Telegram", "Skype"]}
 
   ])
