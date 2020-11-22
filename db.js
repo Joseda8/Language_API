@@ -25,6 +25,14 @@ function do_query_to_cluster(cluster, query, info, dataCallback){
 
             switch(query) {
 
+                case "FIND":
+                    dbCollection = dbObject.collection(info); 
+                    dbCollection.find({}, { projection: {_id:0}} ).toArray(function(error, result) {
+                        if(error){console.log(error);}
+                        dataCallback(result);
+                    });
+                    break;
+
                 case "REGISTER": 
                     dbCollection.insertOne(info, (error, result) => {
                         if(error){console.log(error);}

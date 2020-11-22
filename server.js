@@ -18,6 +18,15 @@ server.get("/", (req, res) => {
 });
 
 
+server.get("/test", (req, res) => {
+    const {continent, collection} = req.query;
+
+    db.do_query_to_cluster(continent, "FIND", collection, (data) => {
+        res.json(data);
+    });
+});
+
+
 /*
 CONSULTAS A LA APLICACIÓN DE LOS USUARIOS
 */
