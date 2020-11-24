@@ -62,7 +62,7 @@ async function intervalFunc() {
         ASI_prev = ASI
     }
 
-    if((JSON.stringify(EUR_prev) != JSON.stringify(EUR)) || ((JSON.stringify(EUR).length > JSON.stringify(AME).length) || (JSON.stringify(EUR).length > JSON.stringify(ASI).length))){
+    if((JSON.stringify(EUR_prev) != JSON.stringify(EUR)) || ((JSON.stringify(EUR).length > JSON.stringify(AME).length) || (JSON.stringify(EUR).length > JSON.stringify(ASI).length)) || (JSON.stringify(EUR) != JSON.stringify(AME) || JSON.stringify(EUR) != JSON.stringify(ASI))){
         if(AME_state){
             if(JSON.stringify(EUR).length > JSON.stringify(AME).length){
                 let newUsers = EUR.filter(a => !AME.map(b=>b.name).includes(a.name))
@@ -77,8 +77,22 @@ async function intervalFunc() {
                         console.error(error)
                     })
                 }
+            } if(JSON.stringify(EUR) != JSON.stringify(AME)){
+                for(i in EUR){
+                    if(JSON.stringify(EUR[i]) != JSON.stringify(AME[i])){
+                        await axios
+                        .put('https://bda-p2-server.azurewebsites.net/update_missing?continent=AME', EUR[i])
+                        .then(res => {
+                            i = i + 1
+                            console.log(res)
+                        })
+                        .catch(error => {
+                            console.error(error)
+                        })
+                    }
+                }
             }
-            AME_prev = EUR
+            AME = EUR
         }
         if(ASI_state){
             if(JSON.stringify(EUR).length > JSON.stringify(ASI).length){
@@ -94,14 +108,28 @@ async function intervalFunc() {
                         console.error(error)
                     })
                 }
+            } if(JSON.stringify(EUR) != JSON.stringify(ASI)){
+                for(i in EUR){
+                    if(JSON.stringify(EUR[i]) != JSON.stringify(ASI[i])){
+                        await axios
+                        .put('https://bda-p2-server.azurewebsites.net/update_missing?continent=ASI', EUR[i])
+                        .then(res => {
+                            i = i + 1
+                            console.log(res)
+                        })
+                        .catch(error => {
+                            console.error(error)
+                        })
+                    }
+                }
             }
-            ASI_prev = EUR
+            ASI = EUR
         }
         EUR_prev = EUR
         
     }
 
-    if((JSON.stringify(AME_prev) != JSON.stringify(AME)) || ((JSON.stringify(AME).length > JSON.stringify(EUR).length) || (JSON.stringify(AME).length > JSON.stringify(ASI).length))){
+    if((JSON.stringify(AME_prev) != JSON.stringify(AME)) || ((JSON.stringify(AME).length > JSON.stringify(EUR).length) || (JSON.stringify(AME).length > JSON.stringify(ASI).length)) || (JSON.stringify(AME) != JSON.stringify(EUR) || JSON.stringify(AME) != JSON.stringify(ASI))){
         if(EUR_state){
             if(JSON.stringify(AME).length > JSON.stringify(EUR).length){
                 let newUsers = AME.filter(a => !EUR.map(b=>b.name).includes(a.name))
@@ -116,8 +144,22 @@ async function intervalFunc() {
                         console.error(error)
                     })
                 }
+            } if(JSON.stringify(AME) != JSON.stringify(EUR)){
+                for(i in AME){
+                    if(JSON.stringify(AME[i]) != JSON.stringify(EUR[i])){
+                        await axios
+                        .put('https://bda-p2-server.azurewebsites.net/update_missing?continent=EUR', AME[i])
+                        .then(res => {
+                            i = i + 1
+                            console.log(res)
+                        })
+                        .catch(error => {
+                            console.error(error)
+                        })
+                    }
+                }
             }
-            EUR_prev = AME
+            EUR = AME
         }
         if(ASI_state){
             if(JSON.stringify(AME).length > JSON.stringify(ASI).length){
@@ -134,13 +176,27 @@ async function intervalFunc() {
                     })
                 }
             }
-            ASI_prev = AME
+            ASI = AME
+        } if(JSON.stringify(AME) != JSON.stringify(ASI)){
+            for(i in AME){
+                if(JSON.stringify(AME[i]) != JSON.stringify(ASI[i])){
+                    await axios
+                    .put('https://bda-p2-server.azurewebsites.net/update_missing?continent=ASI', AME[i])
+                    .then(res => {
+                        i = i + 1
+                        console.log(res)
+                    })
+                    .catch(error => {
+                        console.error(error)
+                    })
+                }
+            }
         }
         AME_prev = AME
         
     }
 
-    if((JSON.stringify(ASI_prev) != JSON.stringify(ASI)) || ((JSON.stringify(ASI).length > JSON.stringify(AME).length) || (JSON.stringify(ASI).length > JSON.stringify(EUR).length))){
+    if((JSON.stringify(ASI_prev) != JSON.stringify(ASI)) || ((JSON.stringify(ASI).length > JSON.stringify(AME).length) || (JSON.stringify(ASI).length > JSON.stringify(EUR).length)) || (JSON.stringify(ASI) != JSON.stringify(AME) || JSON.stringify(ASI) != JSON.stringify(EUR))){
         if(AME_state){
             if(JSON.stringify(ASI).length > JSON.stringify(AME).length){
                 let newUsers = ASI.filter(a => !AME.map(b=>b.name).includes(a.name))
@@ -156,7 +212,21 @@ async function intervalFunc() {
                     })
                 }
             }
-            AME_prev = ASI
+            AME = ASI
+        } if(JSON.stringify(ASI) != JSON.stringify(AME)){
+            for(i in ASI){
+                if(JSON.stringify(ASI[i]) != JSON.stringify(AME[i])){
+                    await axios
+                    .put('https://bda-p2-server.azurewebsites.net/update_missing?continent=AME', ASI[i])
+                    .then(res => {
+                        i = i + 1
+                        console.log(res)
+                    })
+                    .catch(error => {
+                        console.error(error)
+                    })
+                }
+            }
         }
         if(EUR_state){
             if(JSON.stringify(ASI).length > JSON.stringify(EUR).length){
@@ -173,11 +243,29 @@ async function intervalFunc() {
                     })
                 }
             }
-            EUR_prev = ASI
+            EUR = ASI
+        } if(JSON.stringify(ASI) != JSON.stringify(EUR)){
+            for(i in ASI){
+                if(JSON.stringify(ASI[i]) != JSON.stringify(EUR[i])){
+                    await axios
+                    .put('https://bda-p2-server.azurewebsites.net/update_missing?continent=EUR', ASI[i])
+                    .then(res => {
+                        i = i + 1
+                        console.log(res)
+                    })
+                    .catch(error => {
+                        console.error(error)
+                    })
+                }
+            }
         }
         ASI_prev = ASI
         
     }
+
+    //EUR_prev = EUR
+    //AME_prev = AME
+    //ASI_prev = ASI
 
 
 
