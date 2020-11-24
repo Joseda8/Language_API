@@ -18,12 +18,14 @@
   },
   "homepage": "https://github.com/Joseda8/Language_API#readme",
   "dependencies": {
+    "axios": "^0.21.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-http-to-https": "^1.1.4",
     "http": "^0.0.1-security",
     "mongodb": "^3.6.3",
+    "node-fetch": "^2.6.1",
     "serve": "^11.3.2"
   }
 }

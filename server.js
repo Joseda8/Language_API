@@ -18,12 +18,34 @@ server.get("/", (req, res) => {
 });
 
 
-server.get("/test", (req, res) => {
+server.get("/retrieve_data", (req, res) => {
     const {continent, collection} = req.query;
 
     db.do_query_to_cluster(continent, "FIND", collection, (data) => {
         res.json(data);
     });
+});
+
+server.post("/register_missing", (req, res) => {
+    const new_user = req.body;
+    const {continent} = req.query;
+
+    db.do_query_to_cluster(continent, "REGISTER", new_user, (data) => {
+        console.log(data);
+    });
+
+    res.sendStatus(200);
+});
+
+server.put("/update_missing", (req, res) => {
+    const new_info = req.body;
+    const {continent} = req.query;
+
+    db.do_query_to_cluster(continent, "UPDATE", new_info, (data) => {
+        console.log(data);
+    });
+
+    res.sendStatus(200);
 });
 
 

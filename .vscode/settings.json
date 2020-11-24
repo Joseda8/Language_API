@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/84a81c26-0c38-4d86-9bbb-78c13da001c2/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/BDA-P2-server",
+    "appService.deploySubpath": "."
+}
